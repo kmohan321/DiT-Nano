@@ -10,7 +10,7 @@ def unnormalize_to_zero_one(t):
     return t.clamp(-1, 1) * 0.5 + 0.5
 
 @torch.no_grad()
-def sample_flow_matching(model, z, labels, steps=20, device='cuda'):
+def sample_flow_matching(model, z, labels, steps=20, device='cuda', step_callback = None):
     """
     Generates images from noise using Euler integration.
     
@@ -35,6 +35,9 @@ def sample_flow_matching(model, z, labels, steps=20, device='cuda'):
         with torch.autocast(device_type="cuda", dtype=torch.float32): 
             v_pred = model(x, t, labels)
         x = x + v_pred * dt
+        
+        if step_callback is not None:
+            step_callback(i + 1, steps, x)
         
     return x
 
