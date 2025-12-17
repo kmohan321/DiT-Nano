@@ -2,7 +2,7 @@
 
 **A highly efficient, nano-scale generative model trained on ImageNet-64 using Flow Matching.**
 
-![Grid View](inference_results/grid_view_2.png)
+![Grid View](inference_results/grid_view_2.png)  
 *(Generated samples after 35 Epochs)*
 
 ## 1. Introduction
